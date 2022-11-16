@@ -45,6 +45,8 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
                 .withClient("browser")
                 .authorizedGrantTypes("refresh_token", "password")
                 .scopes("ui")
+                .accessTokenValiditySeconds(600)
+                .refreshTokenValiditySeconds(14400)
                 .and()
                 .withClient("account-service")
                 .secret(env.getProperty("ACCOUNT_SERVICE_PASSWORD"))
