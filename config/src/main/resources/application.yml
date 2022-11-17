@@ -11,5 +11,12 @@ spring:
       password: ${CONFIG_SERVICE_PASSWORD}
 
 server:
+  ssl:
+    enabled: true
+    key-store: classpath:config.p12
+    key-store-password: password
+    key-store-type: pkcs12
+    key-alias: springboot
+    key-password: password
   port: 8888
 
