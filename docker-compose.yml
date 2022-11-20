@@ -1,7 +1,8 @@
 version: '2.1'
 services:
   rabbitmq:
-    image: rabbitmq:3-management
+    image: sqshq/piggymetrics-rabbitmq
+    #image: rabbitmq:3-management
     restart: always
     ports:
       - 15672:15672

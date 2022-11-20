@@ -6,6 +6,18 @@ spring:
       password: ${MONGODB_PASSWORD}
       database: piggymetrics
       port: 27017
+  rabbitmq:
+    ssl:
+      enabled: true
+      algorithm: TLSv1.2
+      key-store: classpath:client_rabbitmq_key.p12
+      key-store-password: piggymetrics
+      key-store-type: PKCS12
+      key-alias: client
+      key-password: piggymetrics
+      trust-store: classpath:ca_certificate.p12
+      trust-store-password: piggymetrics
+      trust-store-type: PKCS12
 
 server:
   servlet:

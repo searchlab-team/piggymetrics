@@ -1,6 +1,7 @@
 version: '2.1'
 services:
   rabbitmq:
+    build: rabbitmq
     ports:
       - 5672:5672
 
