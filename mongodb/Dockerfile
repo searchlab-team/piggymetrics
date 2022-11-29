@@ -3,6 +3,9 @@ MAINTAINER Alexander Lukyanchikov <sqshq@sqshq.com>
 
 ADD init.sh /init.sh
 ADD ./dump /
+ADD ./ca_certificate_mongodb.pem /tmp/
+ADD ./server_mongodb_cert_key.pem /tmp/
+ADD ./mongod.conf /etc/
 
 RUN \
  chmod +x /init.sh && \
