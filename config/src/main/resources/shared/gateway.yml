@@ -23,6 +23,9 @@ spring:
       trust-store: classpath:ca_certificate.p12
       trust-store-password: piggymetrics
       trust-store-type: PKCS12
+  redis:
+    host: redis
+    port: 6379
 
 zuul:
   ignoredServices: '*'
@@ -54,6 +57,30 @@ zuul:
         serviceId: notification-service
         stripPrefix: false
         sensitiveHeaders:
+  ratelimit:
+    enabled: true
+    repository: REDIS
+    policy-list:
+      auth-service:
+        - limit: 5
+          refresh-interval: 25
+          type:
+            - origin
+      account-service:
+        - limit: 5
+          refresh-interval: 25
+          type:
+            - origin
+      statistics-service:
+        - limit: 5
+          refresh-interval: 25
+          type:
+            - origin
+      notification-service:
+        - limit: 5
+          refresh-interval: 25
+          type:
+            - origin
 
 server:
   ssl:
