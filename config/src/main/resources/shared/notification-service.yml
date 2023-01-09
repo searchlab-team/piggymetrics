@@ -3,13 +3,27 @@ security:
     client:
       clientId: notification-service
       clientSecret: ${NOTIFICATION_SERVICE_PASSWORD}
-      accessTokenUri: http://auth-service:5000/uaa/oauth/token
+      accessTokenUri: https://auth-service:5000/uaa/oauth/token
       grant-type: client_credentials
       scope: server
+
+eureka:
+  instance:
+    nonSecurePortEnabled: false
+    securePortEnabled: true
+    prefer-ip-address: false
+    hostname: notification-service
 
 server:
   servlet:
     context-path: /notifications
+  ssl:
+    enabled: true
+    key-store: classpath:notification.p12
+    key-store-password: password
+    key-store-type: pkcs12
+    key-alias: notification
+    key-password: password
   port: 8000
 
 remind:
@@ -32,7 +46,6 @@ spring:
       username: user
       password: ${MONGODB_PASSWORD}
       database: piggymetrics
-      uri: mongodb://user:password@notification-mongodb:27017/piggymetrics?ssl=true
       port: 27017
   rabbitmq:
     ssl:

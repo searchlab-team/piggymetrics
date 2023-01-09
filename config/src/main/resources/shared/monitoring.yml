@@ -11,3 +11,12 @@ spring:
       trust-store: classpath:ca_certificate.p12
       trust-store-password: piggymetrics
       trust-store-type: PKCS12
+      
+server:
+  ssl:
+    enabled: true
+    key-store: classpath:monitoring.p12
+    key-store-password: password
+    key-store-type: pkcs12
+    key-alias: monitoring
+    key-password: password

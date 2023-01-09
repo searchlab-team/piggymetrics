@@ -12,15 +12,15 @@ hystrix:
 
 eureka:
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: false
   client:
     serviceUrl:
-      defaultZone: http://registry:8761/eureka/
+      defaultZone: https://registry:8761/eureka/
 
 security:
   oauth2:
     resource:
-      user-info-uri: http://auth-service:5000/uaa/users/current
+      user-info-uri: https://auth-service:5000/uaa/users/current
 
 spring:
   rabbitmq:

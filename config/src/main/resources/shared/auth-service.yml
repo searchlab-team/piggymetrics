@@ -5,7 +5,6 @@ spring:
       username: user
       password: ${MONGODB_PASSWORD}
       database: piggymetrics
-      uri: mongodb://user:password@auth-mongodb:27017/piggymetrics?ssl=true
       port: 27017
   rabbitmq:
     ssl:
@@ -20,7 +19,21 @@ spring:
       trust-store-password: piggymetrics
       trust-store-type: PKCS12
 
+eureka:
+  instance:
+    nonSecurePortEnabled: false
+    securePortEnabled: true
+    prefer-ip-address: false
+    hostname: auth-service
+
 server:
   servlet:
     context-path: /uaa
+  ssl:
+    enabled: true
+    key-store: classpath:auth.p12
+    key-store-password: password
+    key-store-type: pkcs12
+    key-alias: auth
+    key-password: password
   port: 5000

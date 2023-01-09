@@ -3,9 +3,16 @@ security:
     client:
       clientId: statistics-service
       clientSecret: ${STATISTICS_SERVICE_PASSWORD}
-      accessTokenUri: http://auth-service:5000/uaa/oauth/token
+      accessTokenUri: https://auth-service:5000/uaa/oauth/token
       grant-type: client_credentials
       scope: server
+
+eureka:
+  instance:
+    nonSecurePortEnabled: false
+    securePortEnabled: true
+    prefer-ip-address: false
+    hostname: statistics-service
 
 spring:
   data:
@@ -14,7 +21,6 @@ spring:
       username: user
       password: ${MONGODB_PASSWORD}
       database: piggymetrics
-      uri: mongodb://user:password@statistics-mongodb:27017/piggymetrics?ssl=true
       port: 27017
   rabbitmq:
     ssl:
@@ -32,6 +38,13 @@ spring:
 server:
   servlet:
     context-path: /statistics
+  ssl:
+    enabled: true
+    key-store: classpath:statistics.p12
+    key-store-password: password
+    key-store-type: pkcs12
+    key-alias: statistics
+    key-password: password
   port: 7000
 
 rates:

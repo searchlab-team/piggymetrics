@@ -13,4 +13,11 @@ spring:
       trust-store-type: PKCS12
 
 server:
+  ssl:
+    enabled: true
+    key-store: classpath:registry.p12
+    key-store-password: password
+    key-store-type: pkcs12
+    key-alias: registry
+    key-password: password
   port: 8761
