@@ -8,9 +8,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.mail.MailException;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import javax.mail.MessagingException;
+import java.io.IOException;
 
 @Service
 public class NotificationServiceImpl implements NotificationService {
@@ -40,7 +43,7 @@ public class NotificationServiceImpl implements NotificationService {
 				String attachment = client.getAccount(recipient.getAccountName());
 				emailService.send(type, recipient, attachment);
 				recipientService.markNotified(type, recipient);
-			} catch (Throwable t) {
+			} catch (MailException | MessagingException | IOException t) {
 				log.error("an error during backup notification for {}", recipient, t);
 			}
 		}));
@@ -59,7 +62,7 @@ public class NotificationServiceImpl implements NotificationService {
 			try {
 				emailService.send(type, recipient, null);
 				recipientService.markNotified(type, recipient);
-			} catch (Throwable t) {
+			} catch (MailException | MessagingException | IOException t) {
 				log.error("an error during remind notification for {}", recipient, t);
 			}
 		}));
