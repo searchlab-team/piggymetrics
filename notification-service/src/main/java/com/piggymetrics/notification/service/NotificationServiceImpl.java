@@ -36,7 +36,6 @@ public class NotificationServiceImpl implements NotificationService {
 		final NotificationType type = NotificationType.BACKUP;
 
 		List<Recipient> recipients = recipientService.findReadyToNotify(type);
-		log.info("found {} recipients for backup notification", recipients.size());
 
 		recipients.forEach(recipient -> CompletableFuture.runAsync(() -> {
 			try {
@@ -56,7 +55,6 @@ public class NotificationServiceImpl implements NotificationService {
 		final NotificationType type = NotificationType.REMIND;
 
 		List<Recipient> recipients = recipientService.findReadyToNotify(type);
-		log.info("found {} recipients for remind notification", recipients.size());
 
 		recipients.forEach(recipient -> CompletableFuture.runAsync(() -> {
 			try {
